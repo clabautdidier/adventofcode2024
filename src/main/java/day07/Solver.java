@@ -1,4 +1,4 @@
-package day0;
+package day07;
 
 import common.Input;
 import org.slf4j.Logger;
@@ -12,11 +12,20 @@ public class Solver {
 
     public long part1(String filepath, boolean debug) throws IOException {
         List<String> lines = Input.readLines(filepath);
-        return 0;
+        return lines.stream()
+                .map(line -> new Equation(line, "+*"))
+                .filter(e -> !e.findOperators().isEmpty())
+                .mapToLong(Equation::getTestValue)
+                .sum();
     }
 
     public long part2(String filepath, boolean debug) throws IOException {
         List<String> lines = Input.readLines(filepath);
-        return 0;
+
+        return lines.stream()
+                .map(line -> new Equation(line, "+*|"))
+                .filter(e -> !e.findOperators().isEmpty())
+                .mapToLong(Equation::getTestValue)
+                .sum();
     }
 }
