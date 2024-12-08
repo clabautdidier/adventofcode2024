@@ -3,6 +3,7 @@ package common;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
@@ -43,5 +44,20 @@ public class Input {
             }
         }
         return map;
+    }
+
+    public static List<XYValue<Character>> readXYValues(String filepath) {
+        List<String> lines = readLines(filepath);
+
+        List<XYValue<Character>> xyValues = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            char[] chars = lines.get(y).toCharArray();
+
+            for (int x = 0; x < chars.length; x++) {
+                xyValues.add(new XYValue<>(x, y, chars[x]));
+            }
+        }
+
+        return xyValues;
     }
 }
