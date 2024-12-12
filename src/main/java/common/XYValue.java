@@ -16,6 +16,10 @@ public class XYValue<T> extends Point {
         this.value = value;
     }
 
+    public T getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof XYValue that)) return false;

@@ -60,4 +60,20 @@ public class Input {
 
         return xyValues;
     }
+
+    public static List<XYValue<Character>> getXyValuesForBorder(List<String> lines) {
+        List<XYValue<Character>> points = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            if (y == 0 || y == lines.size() - 1) {
+                for (int x = 0; x < lines.get(y).length(); x++) {
+                    points.add(new XYValue<>(x, y, lines.get(y).charAt(x)));
+                }
+            }
+            else {
+                points.add(new XYValue<>(0, y, lines.get(y).charAt(0)));
+                points.add(new XYValue<>(lines.get(y).length() - 1, y, lines.get(y).charAt(lines.get(y).length() - 1)));
+            }
+        }
+        return points;
+    }
 }
