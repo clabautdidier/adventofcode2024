@@ -1,10 +1,13 @@
 package common;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Input {
     public static String readString(String filepath) {
@@ -47,7 +50,10 @@ public class Input {
     }
 
     public static List<XYValue<Character>> readXYValues(String filepath) {
-        List<String> lines = readLines(filepath);
+        return readXYValues(readLines(filepath));
+    }
+
+    public static List<XYValue<Character>> readXYValues(List<String> lines) {
 
         List<XYValue<Character>> xyValues = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
@@ -75,5 +81,17 @@ public class Input {
             }
         }
         return points;
+    }
+
+    public static Map<Point, Character> read2DMap(List<String> lines) {
+        Map<Point, Character> map = new HashMap<>();
+        for (int y = 0; y < lines.size(); y++) {
+            char[] chars = lines.get(y).toCharArray();
+
+            for (int x = 0; x < chars.length; x++) {
+                map.put(new Point(x, y), chars[x]);
+            }
+        }
+        return map;
     }
 }
